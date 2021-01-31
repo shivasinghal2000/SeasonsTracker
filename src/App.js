@@ -2,6 +2,7 @@ import './App.css'
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import SeasonDisplay from './SeasonDisplay'
+import Spinner from './Spinner'
 
 class App extends Component {
   constructor (props) {
@@ -21,7 +22,7 @@ class App extends Component {
     )
   }
 
-  render () {
+  renderContent() {
     if (this.state.errorMessage && !this.state.latitude) {
       return (
         <div>
@@ -37,10 +38,18 @@ class App extends Component {
     if (!this.state.errorMessage && !this.state.latitude) {
       return (
         <div>
-          Loading...
+          <Spinner message="Please accept location request"/>
         </div>
       )
     }
+  }
+
+  render () {
+    return(
+      <div className="border red">
+        {this.renderContent()}
+      </div>
+    )
   }
 }
 
